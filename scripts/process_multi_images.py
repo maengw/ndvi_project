@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 
+
 import numpy as np
 import cv2
 
@@ -72,9 +73,9 @@ class AlignImages():
         self.cropped_img = read_img[self.y:self.h, self.x:self.w]
         return self.cropped_img
 
-    # concatenate b,g,r channels for visualization. Not necessary for the purpose of this project as they are not used to calculate NDVI, GNDVI. 
-    def make_bgr_img(self, b_img, g_img, r_img):
-        return np.dstack( (b_img[:,:,0], np.dstack( (g_img[:,:,0], r_img[:,:,0]) )) )
+    # concatenate 3 channels for visualization. Not necessary for the purpose of this project. 
+    def make_bgr_img(self, img1, img2, im3):
+        return np.dstack( (img1[:,:,0], np.dstack( (img2[:,:,0], img3[:,:,0]) )) )
 
 
 

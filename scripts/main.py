@@ -6,7 +6,6 @@ import cv2
 import csv
 import os
 from natsort import natsorted
-
 from calibration import Calibrate
 from process_multi_images import AlignImages
 from calc_ndvi import CalculateIndex
@@ -17,12 +16,13 @@ def main():
     CA = Calibrate()
     # calibration panel images
     # need to calibrate images when calculating ndvi and gndvi
-    bcrpimg = '/home/woo/Desktop/ndvi_project/data/calibration_panel/FIMG_0086_1.tif'
-    gcrpimg = '/home/woo/Desktop/ndvi_project/data/calibration_panel/FIMG_0086_2.tif'
-    rcrpimg = '/home/woo/Desktop/ndvi_project/data/calibration_panel/FIMG_0086_3.tif'
-    nircrpimg = '/home/woo/Desktop/ndvi_project/data/calibration_panel/FIMG_0086_4.tif'
-    recrpimg = '/home/woo/Desktop/ndvi_project/data/calibration_panel/FIMG_0086_5.tif'
-
+    # change calipanel_path to where your calibration panel images are.
+    calipanel_path = '/home/woo/Desktop/ndvi_project/data/calibration_panel/' 
+    bcrpimg =  os.path.join(calipanel_path, 'FIMG_0086_1.tif')
+    gcrpimg =  os.path.join(calipanel_path, 'FIMG_0086_2.tif')
+    rcrpimg =  os.path.join(calipanel_path, 'FIMG_0086_3.tif')
+    nircrpimg =  os.path.join(calipanel_path, 'FIMG_0086_4.tif')
+    recrpimg =  os.path.join(calipanel_path, 'FIMG_0086_5.tif')
 
     # update average(estimated) calibration reflectance panel 
     CA.update_avg_crp(bcrpimg)
@@ -59,6 +59,7 @@ def main():
     # img_path = '/home/woo/PycharmProjects/immlproject/data/000/'
 
     # sample leaves images
+    # change img_path to where your data are
     img_path = '/home/woo/Desktop/ndvi_project/data/leaves_data/'
     # sort files in directory
     files_to_read = natsorted(os.listdir(img_path))
@@ -103,6 +104,7 @@ def main():
             checker = True
 
     header = ['ndvi', 'gndvi']
+    # change directory to where you want to save ndvi and gndvi
     with open("/home/woo/Desktop/ndvi_project/result/ndvi_gndvi_leaves.csv", "w") as f:
         writer = csv.writer(f)
         writer.writerow(header)

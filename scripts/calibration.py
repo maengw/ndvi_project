@@ -6,7 +6,7 @@ import cv2
 
 
 class Calibrate():
-
+    # class for images calibration
 
     # Panel Reflectance Value(PRV) = approx. 0.6 ; given by Micasense manufacturer
     # Correction Factor(CF) = PRV * 255 / est.PRV ( i.e. average crp)
